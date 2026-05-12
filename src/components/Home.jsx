@@ -42,10 +42,8 @@ export default function EventsPage() {
           src="https://www.w3schools.com/html/mov_bbb.mp4"
         />
 
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
 
-        {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 text-center">
           <p className="text-lg sm:text-xl md:text-2xl font-bold mb-4">
             WHERE MEMORIES BEGIN

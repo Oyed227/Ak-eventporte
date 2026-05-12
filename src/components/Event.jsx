@@ -7,7 +7,7 @@ function Events() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 🔥 HERO SLIDES
+  
   const slides = [
     {
       image: "/religion.png",
@@ -22,17 +22,17 @@ function Events() {
     {
       image: "/business.png",
       title: "Business & Networking",
-      text: "confrences, meet-ups and workshops for builders and leaders. Share ideas, find partners, and turn strategy into growth, one smart connection at a time.",
+      text: "confrences, meet-ups and workshops for builders",
     },
     {
       image: "/sport.png",
       title: "Sports & Fitness",
-      text: "City runs, wellness festivals, outdoor bootcamps: big energy, bigger community. Secure your spot early, scan at the gate, and soak in the music, movement, and momentum",
+      text: "City runs, wellness festivals,  bigger community. ",
     },
     {
       image: "/religion.png",
       title: "Religion & Faith",
-      text: "Worship nights, prayer meetings, church crusades, concerts and conferences. Gather, grow and serve together.",
+      text: "Worship nights, concerts and conferences. Gather, grow and serve together.",
     },
     {
       image: "/artculture.png",
@@ -42,18 +42,18 @@ function Events() {
     {
       image: "/business.png",
       title: "Business & Networking",
-      text: "confrences, meet-ups and workshops for builders and leaders. Share ideas, find partners, and turn strategy into growth, one smart connection at a time.",
+      text: "confrences, meet-ups and workshops for builders and leaders. Share ideas, find partners,  one smart connection at a time.",
     },
     {
       image: "/sport.png",
       title: "Sports & Fitness",
-      text: "City runs, wellness festivals, outdoor bootcamps: big energy, bigger community. Secure your spot early, scan at the gate, and soak in the music, movement, and momentum",
+      text: "City runs, wellness festivals, outdoor bootcamps: big energy, bigger community. Secure your spot early, movement, and momentum",
     },
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // 🔥 AUTO CHANGE HERO
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -62,7 +62,6 @@ function Events() {
     return () => clearInterval(interval);
   }, []);
 
-  // 🔥 FETCH EVENTS
   useEffect(() => {
     async function fetchAllEvents() {
       try {
@@ -94,19 +93,14 @@ function Events() {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      {/* 🔥 HERO SECTION */}
-      <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden">
-        {/* IMAGE */}
+      <div className="relative mt-10 sm:mt-20 h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
+        {" "}
         <img
           src={slides[currentSlide].image}
           alt=""
           className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
         />
-
-        {/* OVERLAY */}
         <div className="absolute inset-0 bg-black/50"></div>
-
-        {/* CONTENT */}
         <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 md:px-16 text-white max-w-md sm:max-w-lg md:max-w-xl">
           <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-4">
             {slides[currentSlide].title}
@@ -128,8 +122,6 @@ function Events() {
             </div>
           </div>
         </div>
-
-        {/* 🔥 DOT INDICATOR */}
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
           {slides.map((_, i) => (
             <div
@@ -142,7 +134,6 @@ function Events() {
         </div>
       </div>
 
-      {/* 🔥 HORIZONTAL CATEGORY SCROLL */}
       <div className="flex overflow-x-auto space-x-4 p-4">
         {[
           "/others.png",
@@ -166,7 +157,6 @@ function Events() {
         ))}
       </div>
 
-      {/* 🔥 EVENTS GRID */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <h1 className="text-2xl sm:text-3xl font-bold mb-8 text-gray-800">
           Recently Viewed

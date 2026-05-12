@@ -1,29 +1,3 @@
-// function Footer() {
-//     return (
-//       <div className="bg-[#fff1b8]">
-//         <a href="">
-//           <img src="/create.png" alt="" />
-//         </a>
-//         <p className="mt-5">
-//           <img src="/eventporte.png" alt="" />
-//         </p>
-
-//         <div className="bg-[#f4e6bb]">
-//           <p>We outside!</p>
-//           <p>
-//             Get first access to early bird tickets to the hottest <br /> 
-//             events, pro
-//             tips on selling tickets, and exclusive <br />
-//              access to our newest products& features
-//           </p>
-//           <input type="text" placeholder="Email address"/>
-//         </div>
-//       </div>
-//     );
-// }
-
-// export default Footer
-
 import {
   FaArrowRight,
   FaTiktok,

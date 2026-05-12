@@ -23,7 +23,6 @@ export default function Navbar() {
   return (
     <nav className="bg-[#07061a] text-white px-4 md:px-6 py-4 fixed top-0 left-0 w-full z-50 shadow-lg">
       <div className="flex items-center justify-between gap-3">
-        {/* Logo */}
         <Link to="/">
           <img
             src="/eventportelogo.png"
@@ -32,7 +31,6 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Search Bar */}
         <div className="flex-1 mx-4 relative hidden lg:block max-w-lg">
           <input
             type="search"
@@ -58,7 +56,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-5">
           <select
             value={location}
@@ -80,7 +77,6 @@ export default function Navbar() {
           <Link to="/signin">Sign In</Link>
         </div>
 
-        {/* Discover Events Button - ALWAYS SHOW */}
         <Link
           to="/events"
           className="bg-white text-black font-semibold rounded-lg
@@ -92,7 +88,6 @@ export default function Navbar() {
           Discover Events
         </Link>
 
-        {/* Hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden"
@@ -123,7 +118,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
         <div className="lg:hidden mt-4 bg-[#11102b] rounded-xl p-5 flex flex-col gap-4">
           <input
