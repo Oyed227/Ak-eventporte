@@ -1,9 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [location, setLocation] = useState("All Locations");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [ticketCount, setTicketCount] = useState(0);
+
+  useEffect(() => {
+    const updateTicketCount = () => {
+      const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
+
+      setTicketCount(savedTickets.length);
+    };
+
+    updateTicketCount();
+
+    window.addEventListener("ticketUpdated", updateTicketCount);
+
+    return () => {
+      window.removeEventListener("ticketUpdated", updateTicketCount);
+    };
+  }, []);
 
   const countries = [
     "United States",
@@ -72,8 +89,18 @@ export default function Navbar() {
           </select>
 
           <Link to="/about">About Us</Link>
+
           <Link to="/pricing">Pricing</Link>
-          <Link to="/tickets">My Tickets</Link>
+
+          <Link to="/tickets" className="relative">
+            My Tickets
+            {ticketCount > 0 && (
+              <span className="absolute -top-2 -right-5 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                {ticketCount}
+              </span>
+            )}
+          </Link>
+
           <Link to="/signin">Sign In</Link>
         </div>
 
@@ -88,10 +115,7 @@ export default function Navbar() {
           Discover Events
         </Link>
 
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="lg:hidden"
-        >
+        <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-7 w-7"
@@ -141,8 +165,19 @@ export default function Navbar() {
           </select>
 
           <Link to="/about">About Us</Link>
+
           <Link to="/pricing">Pricing</Link>
-          <Link to="/tickets">My Tickets</Link>
+
+          <Link to="/tickets" className="flex items-center justify-between">
+            <span>My Tickets</span>
+
+            {ticketCount > 0 && (
+              <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                {ticketCount}
+              </span>
+            )}
+          </Link>
+
           <Link to="/signin">Sign In</Link>
         </div>
       )}
