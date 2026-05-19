@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { QRCodeCanvas } from "qrcode.react";
 
 function MyTickets() {
   const [tickets, setTickets] = useState([]);
@@ -8,6 +9,7 @@ function MyTickets() {
   useEffect(() => {
     const loadTickets = () => {
       const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
+
       setTickets(savedTickets);
     };
 
@@ -46,12 +48,12 @@ function MyTickets() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 pt-24 px-4 sm:px-6 mb-10">
+    <div className="min-h-screen bg-gray-100 pt-24 px-4 sm:px-6 pb-10">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold mb-8 text-center">My Tickets</h1>
 
         {tickets.length === 0 ? (
-          <div className="bg-white rounded-xl shadow p-8 text-center">
+          <div className="bg-white rounded-2xl shadow p-8 text-center">
             <h2 className="text-xl font-semibold text-gray-700">
               No Tickets Yet
             </h2>
@@ -65,7 +67,7 @@ function MyTickets() {
             {tickets.map((ticket, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition"
+                className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300"
               >
                 <img
                   src={ticket.image}
@@ -88,12 +90,12 @@ function MyTickets() {
 
                   <hr className="my-4" />
 
-                  <div className="space-y-1 text-sm">
+                  <div className="space-y-2 text-sm">
                     <p>
                       <span className="font-semibold">Name:</span> {ticket.name}
                     </p>
 
-                    <p>
+                    <p className="break-words">
                       <span className="font-semibold">Email:</span>{" "}
                       {ticket.email}
                     </p>
@@ -104,9 +106,25 @@ function MyTickets() {
                     </p>
                   </div>
 
+                  <div className="flex flex-col items-center mt-6">
+                    <QRCodeCanvas
+                      value={JSON.stringify({
+                        event: ticket.eventName,
+                        name: ticket.name,
+                        email: ticket.email,
+                        phone: ticket.phone,
+                        date: ticket.date,
+                        venue: ticket.venue,
+                      })}
+                      size={120}
+                    />
+
+                    <p className="text-xs text-gray-500 mt-2">Scan Ticket</p>
+                  </div>
+
                   <button
                     onClick={() => handleDeleteClick(index)}
-                    className="w-full mt-5 bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition"
+                    className="w-full mt-6 bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition"
                   >
                     Delete Ticket
                   </button>
@@ -129,14 +147,14 @@ function MyTickets() {
             <div className="flex gap-3">
               <button
                 onClick={cancelDelete}
-                className="flex-1 border border-gray-300 py-3 rounded-lg hover:bg-gray-100"
+                className="flex-1 border border-gray-300 py-3 rounded-lg hover:bg-gray-100 transition"
               >
                 No
               </button>
 
               <button
                 onClick={confirmDelete}
-                className="flex-1 bg-red-500 text-white py-3 rounded-lg hover:bg-red-600"
+                className="flex-1 bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 transition"
               >
                 Yes, Delete
               </button>
@@ -147,5 +165,6 @@ function MyTickets() {
     </div>
   );
 }
+
 
 export default MyTickets;

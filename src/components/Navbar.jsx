@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FaTicket } from "react-icons/fa6";
 
 export default function Navbar() {
   const [location, setLocation] = useState("All Locations");
@@ -95,7 +96,7 @@ export default function Navbar() {
           <Link to="/tickets" className="relative">
             My Tickets
             {ticketCount > 0 && (
-              <span className="absolute -top-2 -right-5 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+              <span className="absolute -top-2 -right-5 bg-orange-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
                 {ticketCount}
               </span>
             )}
@@ -104,42 +105,55 @@ export default function Navbar() {
           <Link to="/signin">Sign In</Link>
         </div>
 
-        <Link
-          to="/events"
-          className="bg-white text-black font-semibold rounded-lg
-          px-2 py-2 text-[10px]
-          sm:px-3 sm:py-2 sm:text-xs
-          md:px-4 md:text-sm
-          hover:bg-gray-200 transition whitespace-nowrap"
-        >
-          Discover Events
-        </Link>
-
-        <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            {menuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+        <div className="flex items-center gap-3">
+          <Link to="/tickets" className="lg:hidden relative">
+            <div>
+              <FaTicket className="text-4xl"/>
+            </div>
+            {ticketCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                {ticketCount}
+              </span>
             )}
-          </svg>
-        </button>
+          </Link>
+
+          <Link
+            to="/events"
+            className="bg-white text-black font-semibold rounded-lg
+    px-2 py-2 text-[10px]
+    sm:px-3 sm:py-2 sm:text-xs
+    md:px-4 md:text-sm
+    hover:bg-gray-200 transition whitespace-nowrap"
+          >
+            Discover Events
+          </Link>
+
+          <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-7 w-7"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {menuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {menuOpen && (
